@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">#{msg['page.cidadesEditar.title']}</ui:define>
+    
+    <ui:define name="body">
+        <h:form id="cidadeForm">
+        <p:panel id="panel" header="Cidade Insert/Update" style="margin-bottom:10px;">
+            <p:messages id="messages" />
+        	<p:inputText  type="hidden" value="#{cidadeMB.cidade.id}" />
+            <h:panelGrid columns="3" cellpadding="6">
+               
+				<p:outputLabel for="nomeInput" value="#{msg['page.cidadesEditar.label.nome']}:" />
+				<p:inputText id="nomeInput"  value="#{cidadeMB.cidade.nome}" required="true" label="Surname" />
+				<p:message for="nomeInput" errorStyle="color: red;" />	                
+	                
+				<p:outputLabel for="dataConstituicaoInput" value="#{msg['page.cidadesEditar.label.dataConstituicao']}:" />
+				<p:calendar id="dataConstituicaoInput" value="#{cidadeMB.cidade.dataConstituicao}" showOn="button" required="true" label="Surname" >
+					<f:convertDateTime pattern="#{msg['commons.padraoData']}" />
+				</p:calendar>
+				<p:message for="dataConstituicaoInput" errorStyle="color: red;" />
+                
+                <p:outputLabel for="populacaoInput" value="#{msg['page.cidadesEditar.label.populacao']}:" />
+				<p:inputText id="populacaoInput"  value="#{cidadeMB.cidade.populacao}" required="true" label="Surname" />
+				<p:message for="populacaoInput" errorStyle="color: red;" />	                
+	             
+                <p:outputLabel for="pibInput" value="#{msg['page.cidadesEditar.label.pib']}:" />
+				<p:inputText id="pibInput"  value="#{cidadeMB.cidade.pib}" required="true" label="Surname" />
+				<p:message for="pibInput" errorStyle="color: red;" />	                
+                
+            </h:panelGrid>
+            </p:panel>
+            <br/>
+            
+            <hr />
+            <p:commandButton action="#{cidadeMB.salvar}" value="#{msg['commons.salvar']}" ajax="false"  rendered="#{cidadeMB.tela eq 'salvar'}" />
+            <p:commandButton action="#{cidadeMB.editar}" value="#{msg['commons.editar']}" ajax="false" rendered="#{cidadeMB.tela eq 'editar'}" />
+            <p:commandButton action="estadosEditar" value="#{msg['commons.voltar']}" immediate="true" ajax="false" />
+        </h:form>
+    </ui:define>
+</ui:composition>

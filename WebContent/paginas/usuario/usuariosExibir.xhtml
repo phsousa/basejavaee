@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:define name="title">#{msg['page.usuariosExibir.title']}</ui:define>
+
+<ui:define name="body">
+	<h:form id="form">
+		<p:panel id="panel" header="Usuários View" style="margin-bottom:10px;">
+			<p:inputText type="hidden" value="#{usuarioMB.usuario.cep.id}"/>
+			<p:inputText type="hidden" value="#{usuarioMB.usuario.id}"/>
+			<h:panelGrid columns="3" cellpadding="6">
+
+				<p:outputLabel for="cpfInput" value="#{msg['page.usuarios.label.cpf']}:" />
+				<p:inputText id="cpfInput" value="#{usuarioMB.usuario.cpf}" label="Surname" disabled/>
+
+				<p:outputLabel for="loginInput" value="#{msg['page.usuarios.label.login']}:" />
+				<p:inputText id="loginInput" value="#{usuarioMB.usuario.login}" label="Surname" disabled/>
+
+				<p:outputLabel for="nomeInput" value="#{msg['page.usuarios.label.nome']}:" />
+				<p:inputText id="nomeInput" value="#{usuarioMB.usuario.nome}" label="Surname" disabled/>
+
+				<p:outputLabel for="senhaInput" value="#{msg['page.usuarios.label.senha']}:" />
+				<p:inputText id="senhaInput" value="#{usuarioMB.usuario.senha}" label="Surname" disabled/>
+
+				<p:outputLabel for="emailInput" value="#{msg['page.usuarios.label.email']}:" />
+				<p:inputText id="emailInput" value="#{usuarioMB.usuario.email}" label="Surname" disabled/>
+
+				<p:outputLabel for="dataNascimentoInput" value="#{msg['page.usuarios.label.dataNascimento']}:" />
+				<p:calendar id="dataNascimentoInput" value="#{usuarioMB.usuario.dataNascimento}" label="Surname" disabled/>
+
+				<p:outputLabel for="cepInput" value="#{msg['page.usuarios.label.cep']}:" />
+				<p:inputText id="cepInput" value="#{usuarioMB.usuario.cep}" label="Surname" disabled/>					
+
+			</h:panelGrid>
+		</p:panel>
+
+		<p:toolbar>
+			<f:facet name="right">
+				<p:commandButton value="Voltar" action="usuarios?faces-redirect=true" style="margin-right:20px;" immediate="true" />
+			</f:facet>
+		</p:toolbar>
+
+	</h:form>
+</ui:define>
+</ui:composition>

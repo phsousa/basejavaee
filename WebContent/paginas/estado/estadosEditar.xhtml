@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">#{msg['page.estadosEditar.title']}</ui:define>
+    <ui:define name="body">
+
+        <h:form id="estadoForm">
+        	<h:inputHidden id="idInputHidden" value="#{estadoBean.estado.id}" />
+            <h:panelGrid columns="3">
+                <h:outputLabel for="idInput" value="#{msg['page.estados.label.id']}:" />
+                <h:inputText id="idInput"
+                    value="#{estadoBean.estado.id}"
+					disabled="true" />
+                <h:message for="idInput" />
+                
+                <h:panelGroup>
+					<h:outputText value="* " style="color: red;" />
+					<h:outputLabel for="nomeInput" value="#{msg['page.estados.label.nome']}:" style="font-weight: bold;"/>
+				</h:panelGroup>
+	                <h:inputText id="nomeInput"  value="#{estadoBean.estado.nome}" required="true" />
+	                <h:message for="nomeInput" />
+	                
+				<h:panelGroup>
+					<h:outputText value="* " style="color: red;" />
+					<h:outputLabel for="siglaInput" value="#{msg['page.estados.label.sigla']}:" style="font-weight: bold;"/>
+				</h:panelGroup>
+                <h:inputText id="siglaInput" value="#{estadoBean.estado.sigla}" required="true"/>
+                <h:message for="siglaInput" />
+                
+            </h:panelGrid>
+            <br/>
+            
+            <h:outputLabel value="#{msg['page.cidadesEditar.label.cidades']}:" style="font-weight:bold"/>
+            <br/>
+            
+            <p:dataTable value="#{estadoBean.estado.cidades}" var="cidade" border="1" cellspacing="0" cellpadding="2" id="datatable">
+            	<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cidadesEditar.label.id']}" />
+                    </f:facet>
+                        <h:outputText value="#{cidade.id}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cidadesEditar.label.nome']}" />
+                    </f:facet>
+                        <h:outputText value="#{cidade.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cidadesEditar.label.dataConstituicao']}" />
+                    </f:facet>
+                        <h:outputText value="#{cidade.dataConstituicao}" >
+                        	<f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cidadesEditar.label.populacao']}" />
+                    </f:facet>
+                        <h:outputText value="#{cidade.populacao}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cidadesEditar.label.pib']}" />
+                    </f:facet>
+                        <h:outputText value="#{cidade.pib}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['commons.editar']}" />
+                    </f:facet>
+                    <p:commandButton value="#{msg['commons.editar']}" id="buttonEditar" action="#{cidadeBean.preparaEditar}" >
+                		<f:setPropertyActionListener target="#{cidadeBean.cidade}" value="#{cidade}" />
+                	</p:commandButton>
+                </p:column>
+            </p:dataTable>
+            
+            <p:commandButton action="#{cidadeBean.novo}" value="#{msg['commons.novo']}" ajax="false" />
+            
+            <hr />
+            <p:commandButton action="#{estadoBean.salvar}" value="#{msg['commons.salvar']}" ajax="false" />
+            <p:commandButton action="estados" value="#{msg['commons.voltar']}" immediate="true" ajax="false" />
+        </h:form>
+    </ui:define>
+</ui:composition>
